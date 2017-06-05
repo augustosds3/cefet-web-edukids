@@ -1,7 +1,9 @@
 /* Exercício 1: Criar uma transição para quando o mouse estiver em cima dos
  * botões play/stop (para que o elemento se revele lentamente)
  */
- #controles ul {}
+ #controles ul {
+ 	transition: 1.5s;
+ }
 
 /*
  * Exercício 2: Você deve implementar uma metáfora visual para cada um dos 4
@@ -11,17 +13,89 @@
  *   - perturbado: animal fica pulsando
  *   - instinto-selvagem: animal dá um salto e cresce, com uma borda vermelha
  */
-.agitado {}
-.agitado img {}
+ .agitado {
+ 	position: relative;
+ }
+ .agitado img {
+ 	display: block;
+ 	animation: piscando .5s ease-in-out 0s infinite alternate;
+ }
 
-.alimentado {}
-.alimentado img {}
+ @keyframes piscando{
+ 	from{opacity: 0;}
+ 	to{opacity: 1;}
+ }
 
-.perturbado {}
-.perturbado img {}
 
-.instinto-selvagem {}
-.instinto-selvagem img {}
+ .alimentado {
+ 	position: relative;
+ }
+ .alimentado img {
+ 	display: block;
+ 	border: 5px solid green;
+ 	animation: girando 3600ms ease-in 1 forwards;
+ }
+
+ @keyframes girando{
+ 	from { transform: rotateY(0); }
+ 	to   { transform: rotateY(3600deg); }
+ }
+
+ .perturbado {
+ 	position: relative;
+ }
+ .perturbado img {
+ 	display: block;
+ 	animation: pulse 1s ease-out;
+ }
+
+ @keyframes pulse{
+ 	0% {
+ 		transform: scale(0.1, 0.1); 
+ 		opacity: 0.0;
+ 	}
+ 	50% {
+ 		opacity: 1.0;
+ 	}
+ 	100% {
+ 		transform: scale(1.2, 1.2); 
+ 		opacity: 0.0;
+ 	}
+ }
+
+ .instinto-selvagem {
+ 	position: relative;
+ }
+ .instinto-selvagem img {
+ 	animation: jump 1.5s ease 0s infinite normal;
+ 	border: 5px solid red;
+ }
+
+ @keyframes jump{
+ 	0%{
+ 		transform: translateY(0);
+ 	}
+ 	20%{
+ 		transform: translateY(0);
+ 	}
+ 	40%{
+ 		transform: translateY(-80px);
+ 	}
+ 	50%{
+ 		transform: translateY(0);
+ 	}
+ 	60%{
+ 		transform: translateY(-15px);
+ 	}
+ 	80%{
+ 		transform: translateY(0);
+ 	}
+ 	100%{
+ 		transform: translateY(0);
+ 	}
+
+ }
+
 
 /*
  * Exercício 3: Criar uma imagem sprite com as imagens dos botões de controle
@@ -31,9 +105,20 @@
  *
  */
 
-.comecar,
-.parar {}
+ .comecar,
+ .parar {
+ 	height: 1em;
+ 	width: 1em;
+ 	display: inline-block;
+ 	vertical-align: middle;
+ }
 
-.comecar {}
+ .comecar {
+ 	background-image: url('imgs/sprite-controles.png');
+ 	background-position: -4px 0;
+ }
 
-.parar {}
+ .parar {
+ 	background-image: url('imgs/sprite-controles.png');
+ 	background-position: -38px 0;
+ }
